@@ -1,0 +1,5 @@
+.DS_Store
+.idea/*
+test_results/*
+in_pregress
+*.lock
