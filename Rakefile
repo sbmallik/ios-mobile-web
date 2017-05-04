@@ -27,7 +27,7 @@ end
 
 # iOS Simulators
 task :ios_simulator do
-  remote_ios_tests('iPhone Simulator', 'iOS', '9.3', '1.5.3')
+  remote_ios_tests('iPhone Simulator', 'iOS', '9.3', '1.6.4')
 end
 
 # Local iOS Simulator

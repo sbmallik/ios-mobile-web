@@ -8,15 +8,15 @@ class FrontPage
   end
 
   def logo
-    @driver.first_ele('header-home')
+    @driver.find_element(:class_name, 'header-home')
   end
 
   def nav_button
-    @driver.first_ele('main-nav-btn')
+    @driver.find_element(:class_name, 'main-nav-btn')
   end
 
   def nav_hub
-    @driver.first_ele('menu-nav-list')
+    @driver.find_element(:class_name, 'menu-nav-list')
   end
 
   def section_link(name)
@@ -31,15 +31,15 @@ class FrontPage
   end
 
   def front_logo(front_name)
-    @driver.first_ele("header-#{front_name.strip.downcase}")
+    @driver.find_element(:class_name, "header-#{front_name.strip.downcase}")
   end
 
   def lead_asset_link
-    @driver.first_ele('lead-story')
+    @driver.find_element(:class_name, 'lead-story')
   end
 
   def asset_header
-    @driver.first_ele('story-header')
+    @driver.find_element(:class_name, 'story-header')
   end
 
 end

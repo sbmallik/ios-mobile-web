@@ -27,37 +27,38 @@ RSpec.configure do |config|
     caps = {
       caps: {
         platformVersion: ENV['platformVersion'],
-          deviceName: ENV['deviceName'],
-          platformName: ENV['platformName'],
-          deviceOrientation: 'portrait',
-          name: bonnie_before.full_description,
-          appiumVersion: ENV['appiumVersion'],
-          autoAcceptAlerts: true,
-          browserName: 'Safari'
-        }
+        deviceName: ENV['deviceName'],
+        platformName: ENV['platformName'],
+        browserName: 'safari',
+        deviceOrientation: 'portrait',
+        name: bonnie_before.full_description,
+        appiumVersion: ENV['appiumVersion'],
+        autoAcceptAlerts: true,
+        screenshotWaitTimeout: 30
       }
+    }
 
-      remote_caps = {
-        tags: 'bonnie-app'
-      }
+    remote_caps = {
+      tags: 'ios-mobileweb'
+    }
 
-      local_caps = {
-        clearSystemFiles: 'true',
-        fullReset: 'true',
-        automationName: ENV['automationName']
-      }
+    local_caps = {
+      clearSystemFiles: true,
+      fullReset: true,
+      automationName: ENV['automationName']
+    }
 
-      if ENV['REMOTE']
-        caps[:caps].merge!(remote_caps)
-      elsif ENV['LOCAL']
-        caps[:caps].merge!(local_caps)
-        caps[:appium_lib] = { server_url: 'http://0.0.0.0:4723/wd/hub' }
-      else
-        raise 'Unsupported environment name - use either LOCAL or REMOTE.'
-      end
+    if ENV['REMOTE']
+      caps[:caps].merge!(remote_caps)
+    elsif ENV['LOCAL']
+      caps[:caps].merge!(local_caps)
+      caps[:appium_lib] = { server_url: 'http://0.0.0.0:4723/wd/hub' }
+    else
+      raise 'Unsupported environment name - use either LOCAL or REMOTE.'
+    end
 
-      @driver = Appium::Driver.new(caps)
-      @selenium_driver = @driver.start_driver
+    @driver = Appium::Driver.new(caps)
+    @selenium_driver = @driver.start_driver
   end
 
   config.after(:each) do |bonnie_after|
@@ -93,6 +94,7 @@ RSpec.configure do |config|
       path = @base_url.to_s + path
     end
     @selenium_driver.navigate.to(path)
+#    @driver.switch_to_default_context
   end
 
 end
